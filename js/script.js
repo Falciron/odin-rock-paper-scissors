@@ -44,8 +44,7 @@ function getHumanChoice() {
  * TRACK HUMAN SCORE, STARTING AT 0
  */
 
-let humanScore = 0;
-let computerScore = 0;
+// Moved into playGame function per instructions.
 
 /**
  * The game of rock, paper, and scissors revolves around a comparison of players' choices.
@@ -61,65 +60,73 @@ let computerScore = 0;
  * UPDATE THE SCORES IF THE RESULT ISN'T A TIE
  */
 
-function playRound(humanChoice, computerChoice) {
-    humanChoice = String(humanChoice).toLowerCase();
-    let roundResult;
-
-    switch (humanChoice){
-        case "rock":
-            if (computerChoice === "scissors") roundResult = "humanWin";
-            else if (computerChoice === "paper") roundResult = "humanLoss";
-            break;
-
-        case "paper":
-            if (computerChoice === "rock") roundResult = "humanWin";
-            else if (computerChoice === "scissors") roundResult = "humanLoss";
-            break;
-
-        case "scissors":
-            if (computerChoice === "paper") roundResult = "humanWin";
-            else if (computerChoice === "rock") roundResult = "humanLoss";
-            break;
-    }
-
-    switch (roundResult){
-        case "humanWin":
-            console.log(`You win! ${humanChoice} beats ${computerChoice}`);
-            humanScore++;
-            break;
-        case "humanLoss":
-            console.log(`You lose! ${computerChoice} beats ${humanChoice}`);
-            computerScore++;
-            break;
-        default:
-            console.log(`It's a tie! ${humanChoice} ties ${computerChoice}`);
-    }
-}
+// Moved into playGame function per instructions.
 
 /**
- * Ensure a fair match by playing rounds until one of the players has accrued five points.
- * To facilitate this, we need a function that takes no inputs, displays the winner, then finishes.
- * It should contain a while loop that continues until the threshold is surpassed.
+ * Ensure a fair match by playing five rounds.
+ * To facilitate this, we need a function that takes no inputs, displays the winner (or a tie), then finishes.
  * 
  * WHEN THIS FUNCTION IS CALLED
- * PLAY A ROUND
- * COMPARE BOTH SCORES TO 5
- *  IF A WINNER IS FOUND, ANNOUNCE WINNER AND END GAME
- *  ELSE PLAY ANOTHER ROUND
+ * SET THE SCORES TO ZERO
+ * PLAY 5 ROUNDS
+ *  INCREMENT THE WINNER'S SCORE (IF NOT A TIE)
+ * AT END
+ *  IF THE HUMAN WINS MORE, DECLARE THEM THE WINNER
+ *  ELSE IF THE COMPUTER WINS MORE, DECLARE THEM THE WINNER
+ *  ELSE DECLARE A TIE
+ * FINISH GAME
  */
 
 function playGame() {
-    let winnerFound = false;
+    let humanScore = 0;
+    let computerScore = 0;
 
-    do {
-        playRound(getHumanChoice(), getComputerChoice());
-        if (humanScore === 5){
-            console.log("Congratulations, you won five rounds and the match!");
-            winnerFound = true;
-        } else if (computerScore === 5){
-            console.log("Sadly, the computer won five rounds and the match.");
-            winnerFound = true;
+    let playRound = (humanChoice, computerChoice) => {
+        humanChoice = String(humanChoice).toLowerCase();
+        let roundResult;
+
+        switch (humanChoice){
+            case "rock":
+                if (computerChoice === "scissors") roundResult = "humanWin";
+                else if (computerChoice === "paper") roundResult = "humanLoss";
+                break;
+
+            case "paper":
+                if (computerChoice === "rock") roundResult = "humanWin";
+                else if (computerChoice === "scissors") roundResult = "humanLoss";
+                break;
+
+            case "scissors":
+                if (computerChoice === "paper") roundResult = "humanWin";
+                else if (computerChoice === "rock") roundResult = "humanLoss";
+                break;
+        }
+
+        switch (roundResult){
+            case "humanWin":
+                console.log(`You win! ${humanChoice} beats ${computerChoice}`);
+                humanScore++;
+                break;
+            case "humanLoss":
+                console.log(`You lose! ${computerChoice} beats ${humanChoice}`);
+                computerScore++;
+                break;
+            default:
+                console.log(`It's a tie! ${humanChoice} ties ${computerChoice}`);
         }
     }
-    while (winnerFound === false)
+
+    playRound(getHumanChoice(), getComputerChoice());
+    playRound(getHumanChoice(), getComputerChoice());
+    playRound(getHumanChoice(), getComputerChoice());
+    playRound(getHumanChoice(), getComputerChoice());
+    playRound(getHumanChoice(), getComputerChoice());
+
+    if (humanScore > computerScore){
+            console.log("Congratulations, you won the match!");
+    } else if (computerScore > humanScore){
+        console.log("Sadly, the computer won the match.");
+    } else {
+        console.log("The match has ended in a tie!")
+    }
 }
