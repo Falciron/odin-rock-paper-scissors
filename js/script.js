@@ -130,3 +130,6 @@ function playGame() {
         console.log("The match has ended in a tie!")
     }
 }
+
+// Run the game on page load.
+playGame();
