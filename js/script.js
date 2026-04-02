@@ -12,13 +12,13 @@ function getComputerChoice() {
     const randomChoiceNumber = Math.floor(3 * Math.random());
     switch (randomChoiceNumber) {
         case 0:
-            return "Rock";
+            return "rock";
             break;
         case 1:
-            return "Scissors";
+            return "paper";
             break;
         default:
-            return "Paper";
+            return "scissors";
     }
 }
 
@@ -33,7 +33,7 @@ function getComputerChoice() {
  */
 
 function getHumanChoice() {
-    return prompt("Please type either 'Rock', 'Paper', or 'Scissors' then press OK.");
+    return prompt("Please type either 'rock', 'paper', or 'scissors' then press OK.");
 }
 
 /**
@@ -46,3 +46,52 @@ function getHumanChoice() {
 
 let humanScore = 0;
 let computerScore = 0;
+
+/**
+ * The game of rock, paper, and scissors revolves around a comparison of players' choices.
+ * Matching hands results in a tie, while differing hands have to follow this logic:
+ * Rock wins vs. Scissors
+ * Scissors wins vs. Paper
+ * Paper wins vs. Rock
+ * 
+ * WHEN THIS FUNCTION IS CALLED WITH A COMPUTER CHOICE AND HUMAN CHOICE
+ * NORMALIZE THE CAPITALIZATION OF THE HUMAN CHOICE
+ * CALCULATE THE OUTCOME OF THE ROUND
+ * LOG THE ROUND RESULT IN THE CONSOLE
+ * UPDATE THE SCORES IF THE RESULT ISN'T A TIE
+ */
+
+function playRound(humanChoice, computerChoice){
+    humanChoice = String(humanChoice).toLowerCase();
+    let roundResult;
+
+    switch (humanChoice){
+        case "rock":
+            if (computerChoice === "scissors") roundResult = "humanWin";
+            else if (computerChoice === "paper") roundResult = "humanLoss";
+            break;
+
+        case "paper":
+            if (computerChoice === "rock") roundResult = "humanWin";
+            else if (computerChoice === "scissors") roundResult = "humanLoss";
+            break;
+
+        case "scissors":
+            if (computerChoice === "paper") roundResult = "humanWin";
+            else if (computerChoice === "rock") roundResult = "humanLoss";
+            break;
+    }
+
+    switch (roundResult){
+        case "humanWin":
+            console.log(`You win! ${humanChoice} beats ${computerChoice}`);
+            humanScore++;
+            break;
+        case "humanLoss":
+            console.log(`You lose! ${computerChoice} beats ${humanChoice}`);
+            computerScore++;
+            break;
+        default:
+            console.log(`It's a tie! ${humanChoice} ties ${computerChoice}`);
+    }
+}
