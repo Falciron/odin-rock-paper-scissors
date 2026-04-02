@@ -35,3 +35,14 @@ function getComputerChoice() {
 function getHumanChoice() {
     return prompt("Please type either 'Rock', 'Paper', or 'Scissors' then press OK.");
 }
+
+/**
+ * We'll need to keep track of the players' running scores, across multiple rounds.
+ * To facilitate this, let's set up two variables, one for each player.
+ * 
+ * TRACK COMPUTER SCORE, STARTING AT 0
+ * TRACK HUMAN SCORE, STARTING AT 0
+ */
+
+let humanScore = 0;
+let computerScore = 0;
