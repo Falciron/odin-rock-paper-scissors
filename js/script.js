@@ -122,13 +122,17 @@ function playGame() {
     playRound(getHumanChoice(), getComputerChoice());
     playRound(getHumanChoice(), getComputerChoice());
 
+    let resultString;
     if (humanScore > computerScore){
-            console.log("Congratulations, you won the match!");
+        resultString = "Congratulations, you won the match!";
     } else if (computerScore > humanScore){
-        console.log("Sadly, the computer won the match.");
+        resultString = "Sadly, the computer won the match.";
     } else {
-        console.log("The match has ended in a tie!")
+        resultString = "The match has ended in a tie!";
     }
+
+    console.log(resultString);
+    alert(resultString);
 }
 
 // Run the game on page load.
