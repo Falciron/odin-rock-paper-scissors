@@ -61,7 +61,7 @@ let computerScore = 0;
  * UPDATE THE SCORES IF THE RESULT ISN'T A TIE
  */
 
-function playRound(humanChoice, computerChoice){
+function playRound(humanChoice, computerChoice) {
     humanChoice = String(humanChoice).toLowerCase();
     let roundResult;
 
@@ -94,4 +94,32 @@ function playRound(humanChoice, computerChoice){
         default:
             console.log(`It's a tie! ${humanChoice} ties ${computerChoice}`);
     }
+}
+
+/**
+ * Ensure a fair match by playing rounds until one of the players has accrued five points.
+ * To facilitate this, we need a function that takes no inputs, displays the winner, then finishes.
+ * It should contain a while loop that continues until the threshold is surpassed.
+ * 
+ * WHEN THIS FUNCTION IS CALLED
+ * PLAY A ROUND
+ * COMPARE BOTH SCORES TO 5
+ *  IF A WINNER IS FOUND, ANNOUNCE WINNER AND END GAME
+ *  ELSE PLAY ANOTHER ROUND
+ */
+
+function playGame() {
+    let winnerFound = false;
+
+    do {
+        playRound(getHumanChoice(), getComputerChoice());
+        if (humanScore === 5){
+            console.log("Congratulations, you won five rounds and the match!");
+            winnerFound = true;
+        } else if (computerScore === 5){
+            console.log("Sadly, the computer won five rounds and the match.");
+            winnerFound = true;
+        }
+    }
+    while (winnerFound === false)
 }
