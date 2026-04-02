@@ -8,9 +8,9 @@
  * RETURN THAT WORD
  */
 
-function getComputerChoice(){
+function getComputerChoice() {
     const randomChoiceNumber = Math.floor(3 * Math.random());
-    switch (randomChoiceNumber){
+    switch (randomChoiceNumber) {
         case 0:
             return "Rock";
             break;
@@ -20,4 +20,18 @@ function getComputerChoice(){
         default:
             return "Paper";
     }
+}
+
+/**
+ * This game will be played by a human. They should be allowed to make their choice manually, using a prompt.
+ * Their choices must be limited to the same as those the computer can make.
+ * To facilitate this, let's make a function that takes no inputs, renders an input dialog, and returns the selection.
+ * 
+ * WHEN THIS FUNCTION IS CALLED
+ * PRESENT THE USER WITH A VISUAL PROMPT TO ENTER ONE OF THE THREE OPTIONS
+ * RETURN THE USER'S WORD
+ */
+
+function getHumanChoice() {
+    return prompt("Please type either 'Rock', 'Paper', or 'Scissors' then press OK.");
 }
