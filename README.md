@@ -1,2 +1,10 @@
 # odin-rock-paper-scissors
-A browser (console) implementation of Rock, Paper, Scissors built with HTML and Javascript for The Odin Project.
+A browser (console) implementation of Rock, Paper, Scissors built with HTML and Javascript for [Odin Project](https://www.theodinproject.com/)'s [Project: Rock Paper Scissors](https://www.theodinproject.com/lessons/foundations-rock-paper-scissors) module.
+
+During this midpoint in the JavaScript Basics track, this project has taught or reinforced for me:
+
+- Reading instructions methodically and rewriting them in plain English and pseudocode for translation into any language
+- Using function expressions, function definitions, and functions as arguments
+- Accommodating JavaScript's unfortunate form of switch cases that require breaks to avoid entering the next case's logic
+- Enjoying string literals' ability to embed variables
+- Working within the limitations of prompts and being suspicious of all user input they take in
