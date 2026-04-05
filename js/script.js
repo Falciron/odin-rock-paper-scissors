@@ -13,10 +13,8 @@ function getComputerChoice() {
     switch (randomChoiceNumber) {
         case 0:
             return "rock";
-            break;
         case 1:
             return "paper";
-            break;
         default:
             return "scissors";
     }
@@ -81,7 +79,7 @@ function playGame() {
     let humanScore = 0;
     let computerScore = 0;
 
-    let playRound = (humanChoice, computerChoice) => {
+    const playRound = (humanChoice, computerChoice) => {
         humanChoice = String(humanChoice).toLowerCase();
         let roundResult;
 
