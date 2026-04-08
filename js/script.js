@@ -37,8 +37,9 @@ function playGame() {
      * @param {"rock" | "paper" | "scissors"} humanChoice 
      * @param {"rock" | "paper" | "scissors"} computerChoice 
      */
-    const playRound = (humanChoice, computerChoice) => {
-        humanChoice = humanChoice.toLowerCase();
+    const playRound = (event) => {
+        const computerChoice = getComputerChoice();
+        const humanChoice = event.currentTarget.textContent.toLowerCase();
         let roundResult;
 
         switch (humanChoice) {
@@ -72,12 +73,9 @@ function playGame() {
         }
     }
 
-    playRound(getHumanChoice(), getComputerChoice());
-    playRound(getHumanChoice(), getComputerChoice());
-    playRound(getHumanChoice(), getComputerChoice());
-    playRound(getHumanChoice(), getComputerChoice());
-    playRound(getHumanChoice(), getComputerChoice());
-
+    const handButtons = document.querySelectorAll("button");
+    handButtons.forEach(button => button.addEventListener("click", playRound));
+    
     let resultString;
     if (humanScore > computerScore) {
         resultString = "Congratulations, you won the match!";
