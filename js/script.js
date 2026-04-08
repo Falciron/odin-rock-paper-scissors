@@ -38,7 +38,7 @@ function playGame() {
      * @param {"rock" | "paper" | "scissors"} computerChoice 
      */
     const playRound = (humanChoice, computerChoice) => {
-        humanChoice = String(humanChoice).toLowerCase();
+        humanChoice = humanChoice.toLowerCase();
         let roundResult;
 
         switch (humanChoice) {
