@@ -30,6 +30,14 @@ function playGame() {
     let humanScore = 0;
     let computerScore = 0;
 
+    const roundResults = document.querySelector("#roundResults");
+
+    function registerRoundResult(newRoundString){
+        const newResult = document.createElement("p");
+        newResult.textContent = newRoundString;
+        roundResults.append(newResult);
+    }
+
     /**
      * Facilitates a single round of Rock, Paper, Scissors, calculates the winner/tie, announces the result, then updates the scores.
      * The game of Rock, Paper, Scissors uses the following logic to determine a winner:
@@ -61,21 +69,21 @@ function playGame() {
 
         switch (roundResult) {
             case "humanWin":
-                console.log(`You win! ${humanChoice} beats ${computerChoice}`);
+                registerRoundResult(`You win! ${humanChoice} beats ${computerChoice}`);
                 humanScore++;
                 break;
             case "humanLoss":
-                console.log(`You lose! ${computerChoice} beats ${humanChoice}`);
+                registerRoundResult(`You lose! ${computerChoice} beats ${humanChoice}`);
                 computerScore++;
                 break;
             default:
-                console.log(`It's a tie! ${humanChoice} ties ${computerChoice}`);
+                registerRoundResult(`It's a tie! ${humanChoice} ties ${computerChoice}`);
         }
     }
 
     const handButtons = document.querySelectorAll("button");
     handButtons.forEach(button => button.addEventListener("click", playRound));
-    
+
     let resultString;
     if (humanScore > computerScore) {
         resultString = "Congratulations, you won the match!";
