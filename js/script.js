@@ -1,13 +1,7 @@
 /**
- * This game will be played against the computer. Its choice will be randomly selected between "rock", "paper", and "scissors".
- * To facilitate this, let's make a function that takes no inputs and returns one of the three strings.
- * 
- * WHEN THIS FUNCTION IS CALLED
- * GET A NUMBER AT RANDOM BETWEEN 0 AND 2
- * MATCH THAT NUMBER TO ROCK, PAPER, and SCISSORS
- * RETURN THAT WORD
+ * Determines the computer's hand selection using random number generation.
+ * @returns {"rock"|"paper"|"scissors"} The computer's choice of hand, represented as a string.
  */
-
 function getComputerChoice() {
     const randomChoiceNumber = Math.floor(3 * Math.random());
     switch (randomChoiceNumber) {
@@ -21,69 +15,33 @@ function getComputerChoice() {
 }
 
 /**
- * This game will be played by a human. They should be allowed to make their choice manually, using a prompt.
- * Their choices must be limited to the same as those the computer can make.
- * To facilitate this, let's make a function that takes no inputs, renders an input dialog, and returns the selection.
- * 
- * WHEN THIS FUNCTION IS CALLED
- * PRESENT THE USER WITH A VISUAL PROMPT TO ENTER ONE OF THE THREE OPTIONS
- * RETURN THE USER'S WORD
+ * Obtains the player's hand selection using a visual prompt.
+ * @returns {string | null} The player's choice of hand, represented as a string, or null, if the player cancels the prompt.
  */
-
 function getHumanChoice() {
     return prompt("Please type either 'rock', 'paper', or 'scissors' then press OK.");
 }
 
 /**
- * We'll need to keep track of the players' running scores, across multiple rounds.
- * To facilitate this, let's set up two variables, one for each player.
- * 
- * TRACK COMPUTER SCORE, STARTING AT 0
- * TRACK HUMAN SCORE, STARTING AT 0
+ * Facilitates a game of Rock, Paper, Scissors consisting of five rounds, calculates the winner/tie, then displays the final results.
  */
-
-// Moved into playGame function per instructions.
-
-/**
- * The game of rock, paper, and scissors revolves around a comparison of players' choices.
- * Matching hands results in a tie, while differing hands have to follow this logic:
- * Rock wins vs. Scissors
- * Scissors wins vs. Paper
- * Paper wins vs. Rock
- * 
- * WHEN THIS FUNCTION IS CALLED WITH A COMPUTER CHOICE AND HUMAN CHOICE
- * NORMALIZE THE CAPITALIZATION OF THE HUMAN CHOICE
- * CALCULATE THE OUTCOME OF THE ROUND
- * LOG THE ROUND RESULT IN THE CONSOLE
- * UPDATE THE SCORES IF THE RESULT ISN'T A TIE
- */
-
-// Moved into playGame function per instructions.
-
-/**
- * Ensure a fair match by playing five rounds.
- * To facilitate this, we need a function that takes no inputs, displays the winner (or a tie), then finishes.
- * 
- * WHEN THIS FUNCTION IS CALLED
- * SET THE SCORES TO ZERO
- * PLAY 5 ROUNDS
- *  INCREMENT THE WINNER'S SCORE (IF NOT A TIE)
- * AT END
- *  IF THE HUMAN WINS MORE, DECLARE THEM THE WINNER
- *  ELSE IF THE COMPUTER WINS MORE, DECLARE THEM THE WINNER
- *  ELSE DECLARE A TIE
- * FINISH GAME
- */
-
 function playGame() {
+    // Keep track of both players' running scores across multiple rounds.
     let humanScore = 0;
     let computerScore = 0;
 
+    /**
+     * Facilitates a single round of Rock, Paper, Scissors, calculates the winner/tie, announces the result, then updates the scores.
+     * The game of Rock, Paper, Scissors uses the following logic to determine a winner:
+     * Rock wins vs. Scissors, Scissors wins vs. Paper, and Paper wins vs. Rock
+     * @param {"rock" | "paper" | "scissors"} humanChoice 
+     * @param {"rock" | "paper" | "scissors"} computerChoice 
+     */
     const playRound = (humanChoice, computerChoice) => {
         humanChoice = String(humanChoice).toLowerCase();
         let roundResult;
 
-        switch (humanChoice){
+        switch (humanChoice) {
             case "rock":
                 if (computerChoice === "scissors") roundResult = "humanWin";
                 else if (computerChoice === "paper") roundResult = "humanLoss";
@@ -100,7 +58,7 @@ function playGame() {
                 break;
         }
 
-        switch (roundResult){
+        switch (roundResult) {
             case "humanWin":
                 console.log(`You win! ${humanChoice} beats ${computerChoice}`);
                 humanScore++;
@@ -121,9 +79,9 @@ function playGame() {
     playRound(getHumanChoice(), getComputerChoice());
 
     let resultString;
-    if (humanScore > computerScore){
+    if (humanScore > computerScore) {
         resultString = "Congratulations, you won the match!";
-    } else if (computerScore > humanScore){
+    } else if (computerScore > humanScore) {
         resultString = "Sadly, the computer won the match.";
     } else {
         resultString = "The match has ended in a tie!";
